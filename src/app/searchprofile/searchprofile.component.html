@@ -1,0 +1,45 @@
+<head>
+    <link rel="stylesheet" href="searchprofile.component.css" type="text/css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>
+            Search Profile
+        </h2>
+
+
+
+        <form class="SearchprofileForm">
+            <div class="form-group">
+                <input type="text" [(ngModel)]="profile.name" name="name" placeholder="Search with Name"> <br><br>
+            </div>
+            <div>
+                <button class='btn btn-primary' type="button" (click)="searchprofile()"> Search Profile</button>
+            </div>
+
+        </form>
+
+    </div>
+    <table *ngIf="showTable">
+        <h2>Displaying Search Results</h2>
+        <tr>
+            <th>Name</th>
+            <th>Associate Id</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>skillSet</th>
+        </tr>
+        <tr *ngFor="let profile of uiResponse">
+            <td>{{profile.name}}</td>
+            <td>{{profile.associateId}}</td>
+            <td>{{profile.mobile}}</td>
+            <td>{{profile.email}}</td>
+            <td>{{profile.skillSet}}</td>
+        </tr>
+
+
+    </table>
+
+
+</body>

@@ -1,0 +1,44 @@
+<head>
+  <link rel="stylesheet" href="forms.component.css" type="text/css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>
+      Signin Form
+    </h2>
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        
+        <input class="form-control" [(ngModel)]="user.username" formControlName="username" type="text" id="username"
+          name="username" minlength="5" maxlength="30" width="100px" height="50px" placeholder="User Name">
+      </div>
+      <div
+        *ngIf="angForm.controls['username'].invalid && (angForm.controls['username'].dirty || angForm.controls['username'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['username'].errors.required">
+          Username is required.
+        </div>
+      </div><br>
+      <div class="form-group">
+        
+        <input class="form-control" [(ngModel)]="user.password" formControlName="password" type="password" id="password"
+          name="password" minlength="5" maxlength="30" placeholder="Password">
+      </div>
+      <div
+        *ngIf="angForm.controls['password'].invalid && (angForm.controls['password'].dirty || angForm.controls['password'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['password'].errors.required">
+          Password is required.
+        </div>
+      </div><br>
+
+      <button class="btn" type="button" [disabled]="angForm.pristine || angForm.invalid" (click)="save()">
+        Login
+      </button>
+
+    </form>
+
+
+  </div>
+</body>

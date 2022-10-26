@@ -1,0 +1,111 @@
+<head>
+  <link rel="stylesheet" href="createprofile.component.css" type="text/css">
+</head>
+
+<body>
+  <div class="container">
+    <h3>
+      Create Profile
+      </h3>
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        
+        <input class="form-control" [(ngModel)]="profile.name" formControlName="name" type="text" id="name" name="name"
+          height="50px" pattern="[A-Za-z]{5,30}" placeholder="Name">
+      </div>
+      <div
+        *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['name'].errors.required">
+          Name is required
+        </div>
+        <div *ngIf="angForm.controls['name'].errors.pattern">
+          Name must be minimum 5 characters and Maximum 30 characters
+        </div>
+
+      </div><br>
+      <div class="form-group">
+        
+        <input class="form-control" [(ngModel)]="profile.associateId" formControlName="associateId" type="associateId"
+          id="associateId" name="associateId" [pattern]="idPattern" placeholder="Associate Id">
+      </div>
+      <div
+        *ngIf="angForm.controls['associateId'].invalid && (angForm.controls['associateId'].dirty || angForm.controls['associateId'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['associateId'].errors.required">
+          AssociateId is required.
+        </div>
+        <div *ngIf="angForm.controls['associateId'].errors.pattern">
+          AssociateId must be minimum 5 characters and Maximum 30 characters
+        </div>
+      </div><br>
+
+      <div class="form-group">
+        
+        <input class="form-control" [(ngModel)]="profile.mobile" formControlName="mobile" type="mobile" id="mobile"
+          name="mobile" [pattern]="mobilePattern" placeholder="Mobile">
+      </div>
+      <div
+        *ngIf="angForm.controls['mobile'].invalid && (angForm.controls['mobile'].dirty || angForm.controls['mobile'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['mobile'].errors.required">
+          Mobile Number is required.
+        </div>
+        <div *ngIf="angForm.controls['mobile'].errors.pattern">
+          Please enter the valid mobile number
+        </div>
+      </div><br>
+
+      <div class="form-group">
+        
+        <input class="form-control" [(ngModel)]="profile.email" formControlName="email" type="email" id="email"
+          name="email" [pattern]="emailPattern" placeholder="Email">
+      </div>
+      <div
+        *ngIf="angForm.controls['email'].invalid && (angForm.controls['email'].dirty || angForm.controls['email'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['email'].errors.required">
+          Email is required.
+        </div>
+        <div *ngIf="angForm.controls['email'].errors.pattern">
+          Invalid Email
+        </div>
+      </div><br>
+
+
+      <div class="form-group">
+        <label for="skillSet">Skillset:</label>
+        <select class="form-select" aria-label="Default select example" name="skillSet" placeholder="Choose the Role"
+          [(ngModel)]="profile.skillSet" size="10" multiple="multiple">
+
+          <option value="HTML-CSS-JAVASCRIPT ">HTML-CSS-JAVASCRIPT </option>
+          <option value="ANGULAR ">ANGULAR </option>
+          <option value="REACT">REACT </option>
+          <option value="SPRING">SPRING </option>
+          <option value="RESTFUL">RESTFUL </option>
+          <option value="HIBERNATE">HIBERNATE </option>
+          <option value="GIT">GIT </option>
+          <option value="DOCKER">DOCKER </option>
+          <option value="JENKINS">JENKINS </option>
+          <option value="AWS">AWS </option>
+        </select>
+      </div>
+      <label>Expertise</label>
+      <input type="number" min="0" max="20" placeholder="Frontend">
+      <input type="number" min="0" max="20" placeholder="Backend">
+      <input type="number" min="0" max="20" placeholder="Database">
+      <input type="number" min="0" max="20" placeholder="Cloud">
+      
+
+      <button class="btn" id="button" type="button" [disabled]="angForm.pristine || angForm.invalid" (click)="create()">
+        Create Profile
+      </button>
+
+    </form>
+
+
+  </div>
+
+
+
+</body>
