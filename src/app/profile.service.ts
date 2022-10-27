@@ -1,28 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-const URL="http://localhost:9090/api/auth";
+const URL="http://localhost:9090/profiletracker/api/auth";
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
   
-  createProfile(profile1: { name: string; associateId: string; mobile: number; email: string; skillSet: string[]; }) {
+  createProfile(profile: { associateName: string; associateId: string; mobile: string; email: string; }) {
     const credentials = sessionStorage.getItem('credentials');
     const token: any = JSON.parse(credentials || '{}')['accessToken'];
 
-    return this.http.post(URL + '/createbook', profile1, {
+    return this.http.post(URL + '/v1/createprofile', profile, {
       headers: {
         Authorization: 'Bearer ' + token
       }
     })
   }
 
-  searchProfileService(profile: { name: string; }) {
+  searchProfileService(profile: { associateName: string; }) {
     const credentials = sessionStorage.getItem('credentials');
     const token: any = JSON.parse(credentials || '{}')['accessToken'];
 
-    return this.http.get(URL+'/searchprofiles'+'?name='+profile.name,  {
+    return this.http.get(URL+'/v1/searchprofile'+'?associateName='+profile.associateName,  {
       headers: {
         Authorization: 'Bearer ' + token
       }

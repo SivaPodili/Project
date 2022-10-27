@@ -13,7 +13,7 @@ export class SearchprofileComponent implements OnInit {
   uiResponse: any;
   showTable: boolean = false;
   profile = {
-    name: "",
+    associateName: "",
   }
 
 

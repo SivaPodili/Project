@@ -22,16 +22,7 @@ export class SignupComponent implements OnInit {
     role:""
     
   }
-  user1= {
-    username:"",
-    password:"",
-    email:"",
-    role:[""]
   
-    }
-
-
-
   constructor(private userService: UserService, private router: Router, private fb: FormBuilder) {
     this.signup();
   }
@@ -47,16 +38,10 @@ export class SignupComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-    });
+      role: ['', Validators.required],
+    })
 
-    this.user1.username=this.user.username;
-    this.user1.email=this.user.email;
-    this.user1.password=this.user.password;
-    const result: any[] = [];
-    result[0]=this.user.role;
-   this.user1.role=result;
-
-    const observable = this.userService.signupService(this.user1)
+    const observable = this.userService.signupService(this.user)
 
     observable.subscribe(
       (Response: any) => {

@@ -11,7 +11,8 @@
       <div class="form-group">
         <!-- <label>Username</label> -->
         <input class="form-control" [(ngModel)]="user.username" formControlName="username" type="text" id="username"
-          name="username" minlength="5" maxlength="30" width="100px" height="50px"  placeholder="User Name" pattern="[A-Za-z]{5,30}">
+          name="username" minlength="5" maxlength="30" width="100px" height="50px" placeholder="User Name"
+          pattern="[A-Za-z]{5,30}">
       </div>
       <div
         *ngIf="angForm.controls['username'].invalid && (angForm.controls['username'].dirty || angForm.controls['username'].touched)"
@@ -27,7 +28,7 @@
       <div class="form-group">
         <!-- <label>Password</label> -->
         <input class="form-control" [(ngModel)]="user.password" formControlName="password" type="password" id="password"
-          name="Password" minlength="3" maxlength="15" placeholder="Password" 
+          name="Password" minlength="3" maxlength="15" placeholder="Password"
           pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{5,30}">
       </div>
       <div
@@ -44,7 +45,7 @@
       <div class="form-group">
         <!-- <label>Email</label> -->
         <input class="form-control" [(ngModel)]="user.email" formControlName="email" type="email" id="email"
-          name="email" [pattern]="emailPattern" placeholder="Email" >
+          name="email" [pattern]="emailPattern" placeholder="Email">
       </div>
       <div
         *ngIf="angForm.controls['email'].invalid && (angForm.controls['email'].dirty || angForm.controls['email'].touched)"
@@ -59,15 +60,18 @@
 
 
       <div class="form-group">
-        <label for="Role">Role:</label>
-        <select class="form-select" aria-label="Default select example" name="role"
-            placeholder="Choose the Role" [(ngModel)]="user.role">
-            <option value="Choose the Role">Choose the Role</option>
-            <option value="User">User</option>
-            <option value="Admin">Admin</option>
+        <!-- <label>Role</label> -->
+        <input class="form-control" [(ngModel)]="user.role" formControlName="role" type="role" id="role" name="role"
+          placeholder="Role" required>
+      </div>
+      <div
+        *ngIf="angForm.controls['role'].invalid && (angForm.controls['role'].dirty || angForm.controls['role'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['role'].errors.required">
+          Role is required.
+        </div>
+      </div><br>
 
-        </select>
-    </div><br>
 
       <button class="btn" id="button" type="button" [disabled]="angForm.pristine || angForm.invalid" (click)="signup()">
         Register
